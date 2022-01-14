@@ -58,3 +58,9 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+# Add New
+CUNEXT_LAB/Library/
+CUNEXT_LAB/Logs/
+CUNEXT_LAB/Temp/
+CUNEXT_LAB/.vsconfig
+CUNEXT_LAB/UserSettings/
