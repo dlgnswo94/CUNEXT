@@ -11,46 +11,7 @@ namespace CUNEXT
     {
         public static class LogSender
         {
-            public static void SendLog(ELogType logType, string message = "Please write a message.", string args = null)
-            {
-                if (EnvironmentInfo.GetOperationSystemInfo() != EEnvironmentInfo.UNITY_EDITOR)
-                    return;
-
-                string formatMessage = message;
-                if (string.IsNullOrEmpty(formatMessage))
-                {
-                    Debug.Log("Please write a message.");
-                    return;
-                }
-
-                if (string.IsNullOrEmpty(args))
-                    formatMessage = string.Format(formatMessage, args);
-
-                switch (logType)
-                {
-                    case ELogType.Error:
-                        Debug.LogError(formatMessage);
-                        break;
-
-                    case ELogType.Assert:
-                        Debug.LogAssertion(formatMessage);
-                        break;
-
-                    case ELogType.Warning:
-                        Debug.LogWarning(formatMessage);
-                        break;
-
-                    case ELogType.Log:
-                        Debug.Log(formatMessage);
-                        break;
-
-                    default:
-                        Debug.Log("Unregistered log type.");
-                        break;
-                }
-            }
-
-            public static void SendLog(ELogType logType, string message = "Please write a message.", string[] args = null)
+            public static void SendLog(ELogType logType, string message = "Please write a message.", params string[] args)
             {
                 if (EnvironmentInfo.GetOperationSystemInfo() != EEnvironmentInfo.UNITY_EDITOR)
                     return;
