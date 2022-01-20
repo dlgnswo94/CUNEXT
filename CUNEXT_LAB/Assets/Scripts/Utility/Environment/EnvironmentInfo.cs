@@ -36,10 +36,7 @@ namespace CUNEXT
 #endif
                 }
 
-                public static EEnvironmentInfo GetOperationSystemInfo()
-                {
-                    return OS;
-                }
+                public static EEnvironmentInfo GetOperationSystemInfo() => OS;
             }
         }
     }
