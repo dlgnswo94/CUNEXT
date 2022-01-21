@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using CUNEXT.Utility.Enum;
 using CUNEXT.Utility.Environment;
@@ -11,7 +11,7 @@ namespace CUNEXT
     {
         public static class LogSender
         {
-            public static void SendLog(ELogType logType, string message = "Please write a message.", params string[] args)
+            public static void SendLog(ELogType logType, string message = "", params string[] args)
             {
                 if (EnvironmentInfo.GetOperationSystemInfo() != EEnvironmentInfo.UNITY_EDITOR)
                     return;
@@ -23,78 +23,41 @@ namespace CUNEXT
                     return;
                 }
 
-                // Process of counting the number of curly bracket pairs and safely putting them in string.format.
                 if (args != null && args.Length > 0)
                 {
-                    int bracketCnt = 0;           // The number of curly bracket pairs.
-                    char curlyBracket = '_';    // save the '{'
-
-                    for (int i = 0; i < formatMessage.Length; i++)
+                    try
                     {
-                        if (formatMessage[i] == '{' || formatMessage[i] == '}')
-                        {
-                            if (curlyBracket != '{')
-                            {
-                                curlyBracket = '{';
-                            }
-                            else
-                            {
-                                if (formatMessage[i] == '{')
-                                {
-                                    Debug.LogWarning("Please check args (curly bracketts).");
-                                    return;
-                                }
-
-                                if (formatMessage[i] != '}')
-                                    continue;
-
-                                curlyBracket = '_'; // Set it to '_' for the next search.
-                                bracketCnt++;
-                            }
-                        }
+                        formatMessage = string.Format(formatMessage, args);
                     }
-
-                    if (bracketCnt != args.Length)
+                    catch (FormatException e)
                     {
-                        Debug.LogError("The number of args and brackets must be the same!");
+                        string eMessage = string.Concat("The message format is not correct. Please check the format of this message again. ---> ", message, args.ToString());
+                        Debug.LogError(eMessage);
                         return;
                     }
-
-                    List<string> formatArgs = new List<string>();
-
-                    for (int j = 0; j < bracketCnt; j++)
-                        formatArgs.Add(args[j]);
-
-                    if (formatArgs == null || formatArgs.Count <= 0)
-                    {
-                        Debug.LogError("FormatArgs is null or count is 0.");
-                        return;
-                    }
-
-                    formatMessage = string.Format(formatMessage, formatArgs);
                 }
             
                 switch (logType)
                 {
                     case ELogType.Error:
                         Debug.LogError(formatMessage);
-                        break;
+                        return;
 
                     case ELogType.Assert:
                         Debug.LogAssertion(formatMessage);
-                        break;
+                        return;
 
                     case ELogType.Warning:
                         Debug.LogWarning(formatMessage);
-                        break;
+                        return;
 
                     case ELogType.Log:
                         Debug.Log(formatMessage);
-                        break;
+                        return;
 
                     default:
                         Debug.Log("Unregistered log type.");
-                        break;
+                        return;
                 }
             }
         }
