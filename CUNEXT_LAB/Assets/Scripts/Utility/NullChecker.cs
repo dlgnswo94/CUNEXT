@@ -9,20 +9,37 @@ namespace CUNEXT
     {
         public class NullChecker
         {
-            public static bool IsNull<T>(T obj, ELogType logType, string errorMessage = "This obj is NULL!", string[] args = null)
+            public static bool IsNull<T>(T obj, ELogType logType, string errorMessage = "This obj is NULL!", params string[] args)
             {
                 if (obj == null)
                 {
+                    LogSender.SendLog(ELogType.Error, errorMessage, args);
                     return true;
                 }
                 return false;
             }
 
-            public static bool IsNull<T>(T[] obj, ELogType logType, string errorMessage, string[] args)
+            public static bool IsNull<T>(T[] obj, ELogType logType, string errorMessage = "This obj is NULL!", params string[] args)
             {
-                if (obj == null || obj.Length <= 0)
+                if (obj == null)
                 {
+                    LogSender.SendLog(ELogType.Error, errorMessage, args);
                     return true;
+                }
+
+                if (obj.Length <= 0)
+                {
+                    LogSender.SendLog(ELogType.Error, errorMessage, args);
+                    return true;
+                }
+
+                for (int i = 0; i < obj.Length; i++)
+                {
+                    if (obj[i] == null)
+                    {
+                        LogSender.SendLog(ELogType.Error, errorMessage, args);
+                        return true;
+                    }
                 }
                 return false;
             }
