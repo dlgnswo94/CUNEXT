@@ -12,7 +12,7 @@ namespace CUNEXT
         {
             public class ExtensionClassifier
             {
-                public static EFileNameExtension Classifying(string path = "", string fileName = "")
+                public static EFileNameExtension Classifying (string path = "", string fileName = "")
                 {
                     if (!Exists(path))
                     {
