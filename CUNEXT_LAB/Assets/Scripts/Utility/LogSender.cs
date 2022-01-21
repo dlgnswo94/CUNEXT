@@ -1,8 +1,8 @@
 using System;
 using UnityEngine;
-using CUNEXT.Utility.Enum;
+using CUNEXT.Utility.Enums;
 using CUNEXT.Utility.Environment;
-using CUNEXT.Utility.Environment.Enum;
+using CUNEXT.Utility.Environment.Enums;
 
 // Test Later.
 namespace CUNEXT

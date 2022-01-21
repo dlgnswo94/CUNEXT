@@ -3,7 +3,7 @@ namespace CUNEXT
 {
     namespace Utility
     {
-        namespace Enum
+        namespace Enums
         {
             public enum ELogType
             {

@@ -8,7 +8,7 @@ namespace CUNEXT
     {
         namespace Environment
         {
-            namespace Enum
+            namespace Enums
             {
                 public enum EEnvironmentInfo
                 {

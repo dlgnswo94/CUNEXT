@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using CUNEXT.Utility.Environment.Enum;
+using CUNEXT.Utility.Environment.Enums;
 
 namespace CUNEXT
 {
