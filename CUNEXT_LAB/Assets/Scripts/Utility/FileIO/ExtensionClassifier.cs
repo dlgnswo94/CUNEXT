@@ -31,7 +31,7 @@ namespace CUNEXT
                         return extension;
                     }
 
-                    extension = (EFileNameExtension)System.Enum.Parse(typeof(EFileNameExtension), strExtension);
+                    extension = (EFileNameExtension)Enum.Parse(typeof(EFileNameExtension), strExtension);
                     return extension;
                 }
             }
