@@ -12,7 +12,7 @@ namespace CUNEXT
         {
             public static class FileInfoReader
             {
-                public static List<FileInformation> GetFileInfo(string folderPath)
+                public static List<FileInformation> GetFileInfos(string folderPath)
                 {
                     if (!Exists(folderPath))
                     {
