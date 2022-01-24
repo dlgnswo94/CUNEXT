@@ -6,20 +6,17 @@ namespace CUNEXT
     {
         namespace FileIO
         {
-            public class FileInfo
+            public class FileInformation
             {
                 string name = "Please name the file.";
                 string pathName = "Please name the pathName.";
                 EFileNameExtension extension = EFileNameExtension.None;
 
-                string tagName;
-
-                public FileInfo(string name, string pathName, EFileNameExtension extension, string tagName = "None")
+                public FileInformation(string name, string pathName, EFileNameExtension extension)
                 {
                     this.name = name;
                     this.pathName = pathName;
                     this.extension = extension;
-                    this.tagName = tagName;
                 }
 
                 public string GetName()
@@ -41,13 +38,6 @@ namespace CUNEXT
                     if (this == null)
                         LogSender.SendLog(ELogType.Error, "Initialization has not been done properly");
                     return extension;
-                }
-
-                public string GetTagName()
-                {
-                    if (this == null)
-                        LogSender.SendLog(ELogType.Error, "Initialization has not been done properly");
-                    return tagName;
                 }
             }
         }
