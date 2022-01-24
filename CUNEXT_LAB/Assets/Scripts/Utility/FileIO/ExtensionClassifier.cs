@@ -26,7 +26,7 @@ namespace CUNEXT
 
                     if (!Enum.IsDefined(typeof(EFileNameExtension), strExtension))
                     {
-                        LogSender.SendLog(ELogType.Error, "This extension does not exist in the EFileNameExtension.", null);
+                        LogSender.SendLog(ELogType.Error, "This extension does not exist in the EFileNameExtension.");
                         return extension;
                     }
 
